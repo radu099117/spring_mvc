@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- load properties file -->
+	<context:property-placeholder location="classpath:student.properties"/>	
+
+    <!-- Define your beans here -->
+    
+    <bean id="myTeacher"
+    	class="spring_mvc_xml_configuration.MathTeacher"
+    	scope="prototype">
+    	
+    	<!--  constructor injection -->
+    	<constructor-arg ref="myStudent"/>
+    </bean>
+    
+    <bean id="myStudent"
+    	class="spring_mvc_xml_configuration.Student">
+    	
+    	<!--  setter injection value -->
+    	<property name="name" value="Radu"/>
+    	<property name="age" value="23"/>
+    	
+    	<!-- get gender from properties file -->
+    	<property name="gender" value="${gender}"/>
+    </bean>
+</beans>
